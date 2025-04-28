@@ -17,18 +17,24 @@ const vehicles = [
     name: "CARGO VAN",
     description: "EFFICIENT DELIVERY.\nMAXIMUM CAPACITY.",
     image: "/images/unicorn-van.png",
+    mobilePosition: "20% 50%", // Show front grill
+    mobileScale: "translateY(60px) scale(1.1)",
   },
   {
     id: 2,
     name: "CHASSIS CAB",
     description: "VERSATILE PLATFORM.\nENDLESS POSSIBILITIES.",
     image: "/images/unicorn-chassis.png",
+    mobilePosition: "40% 50%", // Center the chassis
+    mobileScale: "translateY(40px) scale(1.15)",
   },
   {
     id: 3,
     name: "OFFROAD PICKUP",
     description: "CONQUER ANY TERRAIN.\nUNLIMITED ADVENTURE.",
     image: "/images/unicorn-pickup.png",
+    mobilePosition: "30% 50%", // Show more of the front
+    mobileScale: "translateY(50px) scale(1.2)",
   },
 ]
 
@@ -255,12 +261,12 @@ export function SlateHomepage() {
                       alt={currentVehicle.name}
                       width={1600}
                       height={900}
-                      className={cn("object-contain vehicle-image", currentVehicle.name === "CARGO VAN" && "cargo-van")}
+                      className="vehicle-image"
                       style={
-                        currentVehicle.name === "CARGO VAN"
+                        isMobile
                           ? {
-                              objectPosition: "20% 50%",
-                              transform: "translateY(60px) scale(1.1)",
+                              objectPosition: currentVehicle.mobilePosition,
+                              transform: currentVehicle.mobileScale,
                               maxWidth: "180%",
                               width: "180%",
                             }

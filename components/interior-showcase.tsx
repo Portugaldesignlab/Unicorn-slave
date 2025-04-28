@@ -1,16 +1,17 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef } from "react"
 import { useInView } from "framer-motion"
 import { motion } from "framer-motion"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Navigation, Smartphone, Wifi, Maximize2, Shield, Zap } from "lucide-react"
+import { useMobile } from "@/hooks/use-mobile"
 
 export function InteriorShowcase() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, amount: 0.3 })
-  const [activeView, setActiveView] = useState<"front" | "rear">("front")
+  const isInView = useInView(ref, { once: true, amount: 0.1 }) // Reduced threshold for mobile
+  const isMobile = useMobile()
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -35,20 +36,22 @@ export function InteriorShowcase() {
   }
 
   return (
-    <section ref={ref} className="py-16 md:py-24 bg-[#1a1a1a]">
-      {" "}
-      {/* Lightened from #111111 to #1a1a1a */}
+    <section
+      ref={ref}
+      className="py-12 md:py-24 bg-[#1a1a1a]"
+      style={{ backgroundColor: "#1a1a1a" }} // Force background color
+    >
       <div className="container px-4 mx-auto">
-        <div className="text-center mb-12">
+        <div className="text-center mb-8 md:mb-12">
           <div className="inline-block bg-primary/10 px-4 py-2 rounded-full mb-4">
             <span className="text-primary font-medium text-sm">INTERIOR EXPERIENCE</span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-bold leading-tight">
             DESIGNED FOR
             <br />
             <span className="text-primary">COMFORT & CONTROL</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-4">
+          <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto mt-4">
             Every UNICORN vehicle features a thoughtfully designed interior that combines intuitive technology with
             driver-focused comfort and versatile space.
           </p>
@@ -62,13 +65,14 @@ export function InteriorShowcase() {
         >
           {/* Driver's Cockpit Section */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="relative overflow-hidden rounded-lg aspect-[4/3]">
+            <div className="relative overflow-hidden rounded-lg aspect-[4/3] w-full">
               <Image
                 src="/images/front-interior.png"
                 alt="UNICORN Driver's Cockpit"
                 fill
                 className="object-cover rounded-lg"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                priority // Added priority loading
               />
             </div>
             <div className="space-y-6">
@@ -123,13 +127,14 @@ export function InteriorShowcase() {
 
           {/* Cargo Space Section */}
           <motion.div variants={itemVariants} className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-            <div className="order-1 md:order-2 relative overflow-hidden rounded-lg aspect-[4/3]">
+            <div className="order-1 md:order-2 relative overflow-hidden rounded-lg aspect-[4/3] w-full">
               <Image
                 src="/images/back-interior.png"
                 alt="UNICORN Cargo Space"
                 fill
                 className="object-cover rounded-lg"
                 sizes="(max-width: 768px) 100vw, 50vw"
+                priority // Added priority loading
               />
             </div>
             <div className="order-2 md:order-1 space-y-6">
@@ -181,25 +186,25 @@ export function InteriorShowcase() {
             </div>
           </motion.div>
 
-          {/* Interior Highlights */}
-          <motion.div variants={itemVariants} className="mt-12">
+          {/* Interior Highlights - Simplified for mobile */}
+          <motion.div variants={itemVariants} className="mt-8 md:mt-12">
             <h3 className="text-2xl font-bold mb-6 text-center">Interior Highlights</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border/10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+              <div className="bg-card/50 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-border/10">
                 <h4 className="font-medium text-lg mb-2">Ambient Lighting</h4>
                 <p className="text-sm text-muted-foreground">
                   Customizable ambient lighting creates the perfect atmosphere for any journey, with multiple color
                   options and brightness settings.
                 </p>
               </div>
-              <div className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border/10">
+              <div className="bg-card/50 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-border/10">
                 <h4 className="font-medium text-lg mb-2">Climate Control</h4>
                 <p className="text-sm text-muted-foreground">
                   Tri-zone automatic climate system ensures optimal comfort for all passengers, with dedicated controls
                   for driver, front passenger, and rear seats.
                 </p>
               </div>
-              <div className="bg-card/50 backdrop-blur-sm p-6 rounded-lg border border-border/10">
+              <div className="bg-card/50 backdrop-blur-sm p-4 md:p-6 rounded-lg border border-border/10 sm:col-span-2 md:col-span-1">
                 <h4 className="font-medium text-lg mb-2">Premium Audio</h4>
                 <p className="text-sm text-muted-foreground">
                   Immersive sound system with spatial audio technology delivers concert-quality sound throughout the
@@ -209,7 +214,7 @@ export function InteriorShowcase() {
             </div>
           </motion.div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-8 md:mt-12 text-center">
             <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground">
               EXPLORE INTERIOR OPTIONS
             </Button>

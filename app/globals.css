@@ -78,6 +78,7 @@ main,
   object-fit: contain;
   filter: brightness(0.85) contrast(1.05) saturate(0.95);
   transition: transform 0.3s ease-out;
+  display: block !important;
 }
 
 /* Vehicle container */
@@ -88,6 +89,7 @@ main,
   width: 100%;
   height: 100%;
   position: relative;
+  overflow: visible !important;
 }
 
 /* Carousel container */
@@ -115,6 +117,23 @@ main,
   scrollbar-width: none; /* Firefox */
 }
 
+/* Ensure sections are visible on mobile */
+section {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Ensure images load properly */
+img {
+  display: block !important;
+}
+
+/* Force background colors for specific sections */
+section.bg-\[\#1a1a1a\] {
+  background-color: #1a1a1a !important;
+}
+
 /* Responsive styles using mobile-first approach */
 
 /* Small screens (mobile) */
@@ -137,27 +156,11 @@ main,
   }
 
   .vehicle-image {
-    max-width: 150%;
-    width: 150%;
-    max-height: none;
-    object-position: 60% 40%;
-    transform: scale(1.2);
-  }
-
-  /* Specific styling for the cargo van to show the front grill */
-  .cargo-van {
-    object-position: 20% 50% !important; /* Shifted left to show more of the front */
-    transform: translateY(60px) scale(1.1) !important; /* Move down and scale appropriately */
-    max-width: 180% !important; /* Make image wider */
-    width: 180% !important;
-  }
-
-  /* Additional override for cargo van to ensure it's applied */
-  img.cargo-van {
-    object-position: 20% 50% !important;
-    transform: translateY(60px) scale(1.1) !important;
     max-width: 180% !important;
     width: 180% !important;
+    max-height: none;
+    object-position: center !important;
+    transform: translateY(50px) scale(1.1) !important;
   }
 
   /* Add touch-based swiping for mobile */
@@ -180,6 +183,25 @@ main,
   .swipe-indicator {
     bottom: 80px !important;
   }
+
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Ensure images in interior section display properly */
+  .aspect-\[4\/3\] {
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+    min-height: 250px !important;
+  }
+
+  /* Ensure text is readable */
+  .text-muted-foreground {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
 }
 
 /* Medium screens (tablets) */
@@ -187,6 +209,18 @@ main,
   .vehicle-image {
     max-width: 95%;
     max-height: 80vh;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .carousel-container {
+    overflow: hidden;
+  }
+
+  .vehicle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -195,10 +229,22 @@ main,
   .vehicle-image {
     max-width: 95%;
     max-height: 85vh;
+    object-fit: contain;
+    object-position: center;
   }
 
   .vehicle-image:hover {
     transform: scale(1.02);
+  }
+
+  .carousel-container {
+    overflow: hidden;
+  }
+
+  .vehicle-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
