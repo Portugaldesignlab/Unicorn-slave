@@ -136,8 +136,12 @@ export function SlateHomepage() {
 
         {/* Mobile Menu Button */}
         <div className="flex items-center gap-2 md:hidden">
-          <Button size="sm" className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-3 py-1 h-8">
-            RESERVE
+          <Button
+            size="sm"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground text-xs px-3 py-1 h-8"
+            asChild
+          >
+            <Link href="/reserve">RESERVE</Link>
           </Button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -150,22 +154,24 @@ export function SlateHomepage() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6">
-          <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link
+            href="/personalization"
+            className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+          >
             Personalization
           </Link>
-          <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/charging" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Charging
           </Link>
-          <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/faq" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             FAQ
           </Link>
-          <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Merch
-          </Link>
-          <Link href="#" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link href="/signin" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Sign in
           </Link>
-          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">RESERVE</Button>
+          <Button className="bg-primary hover:bg-primary/90 text-primary-foreground" asChild>
+            <Link href="/reserve">RESERVE</Link>
+          </Button>
         </nav>
       </header>
 
@@ -180,32 +186,30 @@ export function SlateHomepage() {
           >
             <nav className="flex flex-col py-2">
               <Link
-                href="#"
+                href="/personalization"
                 className="px-6 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Personalization
               </Link>
               <Link
-                href="#"
+                href="/charging"
                 className="px-6 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Charging
               </Link>
               <Link
-                href="#"
+                href="/faq"
                 className="px-6 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 FAQ
               </Link>
               <Link
-                href="#"
+                href="/signin"
                 className="px-6 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-colors"
-              >
-                Merch
-              </Link>
-              <Link
-                href="#"
-                className="px-6 py-3 text-sm text-muted-foreground hover:text-foreground hover:bg-muted/10 transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
               >
                 Sign in
               </Link>
