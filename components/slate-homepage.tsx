@@ -256,6 +256,16 @@ export function SlateHomepage() {
                       width={1600}
                       height={900}
                       className={cn("object-contain vehicle-image", currentVehicle.name === "CARGO VAN" && "cargo-van")}
+                      style={
+                        currentVehicle.name === "CARGO VAN"
+                          ? {
+                              objectPosition: "20% 50%",
+                              transform: "translateY(60px) scale(1.1)",
+                              maxWidth: "180%",
+                              width: "180%",
+                            }
+                          : {}
+                      }
                       priority
                     />
                   </div>

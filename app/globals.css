@@ -152,6 +152,14 @@ main,
     width: 180% !important;
   }
 
+  /* Additional override for cargo van to ensure it's applied */
+  img.cargo-van {
+    object-position: 20% 50% !important;
+    transform: translateY(60px) scale(1.1) !important;
+    max-width: 180% !important;
+    width: 180% !important;
+  }
+
   /* Add touch-based swiping for mobile */
   .carousel-container {
     touch-action: pan-y;
